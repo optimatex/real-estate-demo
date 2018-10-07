@@ -1,0 +1,35 @@
+$base-line-height: 34px;
+$spin-duration: 1s;
+$pulse-duration: 750ms;
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  width: $base-line-height;
+}
+
+.circle {
+  align-items: center;
+  animation: spin 1s linear 0s infinite;
+  animation-direction: reverse;
+  border: .25rem solid #1A9BD8;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  content: '';
+  display: flex;
+  height: $base-line-height;
+  justify-content: center;
+  position: relative;
+  width: $base-line-height;
+}

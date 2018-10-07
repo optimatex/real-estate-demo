@@ -1,0 +1,49 @@
+{
+  "cacheDirectory": "../jest-cache",
+  "browser": true,
+  "verbose": false,
+  "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
+  "transform": {
+    ".*": "<rootDir>/jest.transform.js"
+  },
+  "roots": ["./src/"],
+  "testPathIgnorePatterns": ["/node_modules/"],
+  "collectCoverageFrom": [
+    "src/**/*.(js|jsx)",
+    "!src/**/*.spec.js",
+    "!src/**/*test.js",
+    "!src/**/__dict__/**/*.js",
+    "!src/**/__test__/**/*.js",
+    "!src/main.js"
+  ],
+  "timers": "fake",
+  "coverageThreshold": {
+    "global": {
+      "statements": "threshold",
+      "branches": "threshold",
+      "functions": "threshold",
+      "lines": "threshold"
+    }
+  },
+  "coverageReporters": ["json", "html"],
+  "setupFiles": ["./jest.setup.js"],
+  "moduleNameMapper": { "^.+\\.(css|scss)$": "identity-obj-proxy" },
+  "modulePaths": [
+    "src"
+  ],
+  "testRegex": ".spec.(js|jsx)",
+  "moduleDirectories": ["node_modules", "src"],
+  "coveragePathIgnorePatterns": [
+    "/node_modules/",
+    "(.test)\\.(ts|tsx|js)$",
+    "/distribution/.*\\.(ts|js)$",
+    "<rootDir>/jest.json",
+    "<rootDir>/jest.config.js",
+    "<rootDir>/jest.setup.js"
+  ],
+  "watchPathIgnorePatterns": [
+    "<rootDir>/jest.json",
+    "<rootDir>/jest.config.js",
+    "<rootDir>/jest.setup.js"
+  ]
+}
