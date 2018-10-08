@@ -1,5 +1,6 @@
 import { observable, computed, action } from 'mobx';
-import getPropertiesRequest from '../api';
+import PropertyStore from '../PropertyStore';
+import * as api from '../api';
 
 export default class PropertiesStore {
   @observable.shallow
@@ -31,23 +32,34 @@ export default class PropertiesStore {
   @action
   fromJS(arr) {
     if (arr) {
-      this.collection = arr;
+      this.collection = arr.map(item => this.createStore(item));
     } else {
       this.collection = [];
     }
   }
 
+  createStore = model => new PropertyStore(model);
+
   getProperties = () => {
     this.setLoading();
-    return getPropertiesRequest()
+    return api
+      .getPropertiesRequest()
       .then(res => {
-        console.log('%c res', 'color: #0087d4', res);
         this.unsetLoading();
         this.fromJS(res.data);
+        this.getGeo();
       })
       .catch(error => {
         this.unsetLoading();
         this.setError(error);
       });
+  };
+
+  getGeo = () => {
+    this.collection.forEach(item => {
+      api
+        .getPropertyGeoRequest(item.address.postCode)
+        .then(res => item.setData(res.data));
+    });
   };
 }

@@ -31,6 +31,8 @@ class Properties extends Component {
           <th>Address</th>
 
           <th>IncomeGenerated</th>
+
+          <th>Service Area</th>
         </tr>
       </thead>
 
@@ -47,7 +49,7 @@ class Properties extends Component {
       store: { collection, isLoading },
     } = this.props;
     return (
-      <div className="container">
+      <div>
         {isLoading ? (
           <Spiner styleName="spinner" />
         ) : (

@@ -1,3 +1,19 @@
 .name {
   text-transform: capitalize;
 }
+
+.in {
+  color: green;
+}
+
+.out {
+  color: red;
+}
+
+.in,
+.out {
+  background-color: #EFEFEF;
+  border-radius: 40px;
+  padding: 5px 11px;
+  vertical-align: middle;
+}

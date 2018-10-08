@@ -12,19 +12,19 @@ class Row extends Component {
 
   renderAdress = address => (
     <td>
-      <div>{address.line1}</div>
+      <div data-test="line-one">{address.line1}</div>
 
       {address.line2 && <div>{address.line2}</div>}
 
       {address.line3 && <div>{address.line3}</div>}
 
-      <div>{address.line4}</div>
+      <div data-test="line-four">{address.line4}</div>
 
-      <div>{address.postCode}</div>
+      <div data-test="post">{address.postCode}</div>
 
-      <div>{address.city}</div>
+      <div data-test="city">{address.city}</div>
 
-      <div>{address.country}</div>
+      <div data-test="country">{address.country}</div>
     </td>
   );
 
@@ -36,7 +36,15 @@ class Row extends Component {
 
         {this.renderAdress(item.address)}
 
-        <td>{item.incomeGenerated} £</td>
+        <td data-test="income">{item.incomeGenerated} £</td>
+
+        <td>
+          {item.canService ? (
+            <span styleName="in">✓ can service</span>
+          ) : (
+            <span styleName="out">🛇 out of service</span>
+          )}
+        </td>
       </tr>
     );
   }

@@ -39,4 +39,50 @@ describe('Row component', () => {
     expect(wrap.find('.name')).toHaveLength(1);
     expect(wrap.find('.name').text()).toBe('carlos');
   });
+
+  it('should render proper adress', () => {
+    wrap = shallow(<Row {...defaultProps} />);
+
+    expect(wrap.find('[data-test="line-one"]')).toHaveLength(1);
+    expect(wrap.find('[data-test="line-one"]').text()).toBe('Flat 5');
+
+    expect(wrap.find('[data-test="line-four"]')).toHaveLength(1);
+    expect(wrap.find('[data-test="line-four"]').text()).toBe(
+      '7 Westbourne Terrace',
+    );
+
+    expect(wrap.find('[data-test="post"]')).toHaveLength(1);
+    expect(wrap.find('[data-test="post"]').text()).toBe('W2 3UL');
+
+    expect(wrap.find('[data-test="city"]')).toHaveLength(1);
+    expect(wrap.find('[data-test="city"]').text()).toBe('London');
+
+    expect(wrap.find('[data-test="country"]')).toHaveLength(1);
+    expect(wrap.find('[data-test="country"]').text()).toBe('U.K.');
+  });
+
+  it('should render proper income', () => {
+    wrap = shallow(<Row {...defaultProps} />);
+
+    expect(wrap.find('[data-test="income"]')).toHaveLength(1);
+    expect(wrap.find('[data-test="income"]').text()).toBe('2000.34 £');
+  });
+
+  it('should render proper service status if possition is out of service', () => {
+    wrap = shallow(<Row {...defaultProps} />);
+
+    expect(wrap.find('.out')).toHaveLength(1);
+    expect(wrap.find('.in')).toHaveLength(0);
+  });
+
+  it('should render proper service status  if possition is inside toHaveLength service', () => {
+    const newProps = {
+      ...item,
+      canService: true,
+    };
+    wrap = shallow(<Row item={newProps} />);
+
+    expect(wrap.find('.in')).toHaveLength(1);
+    expect(wrap.find('.out')).toHaveLength(0);
+  });
 });
